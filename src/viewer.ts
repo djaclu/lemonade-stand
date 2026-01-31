@@ -63,8 +63,8 @@ export function initViewer(): void {
   controls.mouseButtons.middle = CameraControls.ACTION.NONE;
   
   // Enable touch controls
-  controls.touches.one = CameraControls.ACTION.ROTATE;
-  controls.touches.two = CameraControls.ACTION.DOLLY_PAN;
+  controls.touches.one = CameraControls.ACTION.TOUCH_ROTATE;
+  controls.touches.two = CameraControls.ACTION.TOUCH_DOLLY;
 
   // Enhanced lighting to show lemon color - using warmer tones
   const ambient = new THREE.AmbientLight(0xfff8e1, 1.0); // Warm white/light yellow
