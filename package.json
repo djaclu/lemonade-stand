@@ -1,0 +1,20 @@
+{
+  "name": "newsletter-3d-site",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "camera-controls": "^2.9.0",
+    "three": "^0.169.0"
+  },
+  "devDependencies": {
+    "@types/three": "^0.182.0",
+    "typescript": "~5.6.2",
+    "vite": "^6.0.1"
+  }
+}

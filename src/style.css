@@ -1,0 +1,232 @@
+@font-face {
+  font-family: 'UnifrakturCook';
+  src: url('../typefaces/UnifrakturCook-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+:root {
+  --bg: #0f0f12;
+  --surface: #18181c;
+  --text: #f4f4f5;
+  --muted: #a1a1aa;
+  --accent: #fde047;
+  --accent-hover: #fef08a;
+  --border: #27272a;
+  --error: #f87171;
+  --success: #4ade80;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-custom: 'UnifrakturCook', serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  text-transform: lowercase;
+}
+
+#app {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Hero: title, subtitle, newsletter */
+.hero {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  width: 100%;
+  max-width: 90vw;
+  padding: clamp(1.5rem, 5vw, 3rem) clamp(1.25rem, 4vw, 2.5rem);
+  text-align: center;
+  pointer-events: none;
+}
+
+.title {
+  margin: 0 0 0rem;
+  font-family: var(--font-custom);
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+}
+
+.subtitle {
+  margin: 0 0 clamp(1.5rem, 4vw, 2.5rem);
+  font-size: 20px;
+  color: var(--text);
+}
+
+.newsletter {
+  max-width: 28rem;
+  margin: 0 auto;
+}
+
+.newsletter-label {
+  margin: 0 0 0.75rem;
+  font-size: 0.9375rem;
+  color: var(--text);
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  pointer-events: auto;
+}
+
+@media (min-width: 480px) {
+  .newsletter-form {
+    flex-direction: row;
+    align-items: stretch;
+  }
+}
+
+.newsletter-input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.75rem 1rem;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.newsletter-input::placeholder {
+  color: var(--text);
+  opacity: 0.7;
+}
+
+.newsletter-input:hover {
+  border-color: #3f3f46;
+}
+
+.newsletter-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(253, 224, 71, 0.2);
+}
+
+.newsletter-submit {
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-custom);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: black;
+  background: var(--accent);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  text-transform: lowercase;
+}
+
+.newsletter-submit:hover {
+  background: var(--accent-hover);
+}
+
+.newsletter-submit:active {
+  transform: scale(0.98);
+}
+
+.newsletter-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.form-message {
+  margin: 0.5rem 0 0;
+  font-size: 0.875rem;
+  min-height: 1.25em;
+  color: var(--text);
+}
+
+.form-message.success {
+  color: var(--success);
+}
+
+.form-message.error {
+  color: var(--error);
+}
+
+/* 3D viewer */
+.viewer-container {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  touch-action: none;
+}
+
+#viewer-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #18181c 0%, #0f0f12 100%);
+  cursor: grab;
+  touch-action: none;
+}
+
+#viewer-canvas:active {
+  cursor: grabbing;
+}
+
+.viewer-loading,
+.viewer-error {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-family: var(--font-serif);
+  color: var(--text);
+  pointer-events: none;
+}
+
+.viewer-error {
+  color: var(--error);
+  padding: 1rem;
+  text-align: center;
+}
+
+.viewer-container[data-loading='true'] .viewer-loading {
+  display: flex;
+}
+
+.viewer-container[data-loading='false'] .viewer-loading {
+  display: none;
+}
+
+.viewer-container[data-error='true'] .viewer-error {
+  display: flex;
+}
+
+.viewer-container[data-error='false'] .viewer-error,
+.viewer-container:not([data-error]) .viewer-error {
+  display: none;
+}
