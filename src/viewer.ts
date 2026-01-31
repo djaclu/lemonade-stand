@@ -146,27 +146,6 @@ export function initViewer(): void {
           (gltf: { scene: THREE.Group }) => {
             if (currentModel) scene.remove(currentModel);
             currentModel = gltf.scene;
-            
-            // Ensure materials display colors properly
-            currentModel.traverse((child) => {
-              if (child instanceof THREE.Mesh) {
-                const material = child.material;
-                if (material instanceof THREE.MeshStandardMaterial || 
-                    material instanceof THREE.MeshPhysicalMaterial ||
-                    material instanceof THREE.MeshBasicMaterial) {
-                  // Ensure color is visible
-                  if (material.color) {
-                    material.color.convertSRGBToLinear();
-                  }
-                  // Make sure material is not too dark
-                  if (material.emissive) {
-                    material.emissive.setHex(0x000000);
-                  }
-                  material.needsUpdate = true;
-                }
-              }
-            });
-            
             scene.add(currentModel);
             fitCameraToModel(currentModel);
             setLoading(false);
