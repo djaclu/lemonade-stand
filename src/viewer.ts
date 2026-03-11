@@ -117,7 +117,7 @@ export function initViewer(): void {
     return sprite;
   }
 
-  function addLeaderLines(_group: THREE.Group, length: number): void {
+  function addLeaderLines(_group: THREE.Group): void {
     if (leaderLinesGroup) scene.remove(leaderLinesGroup);
 
     leaderLinesGroup = new THREE.Group();
@@ -250,8 +250,7 @@ export function initViewer(): void {
 
             box.setFromObject(currentModel);
             box.getSize(size);
-            const maxDim = Math.max(size.x, size.y, size.z);
-            addLeaderLines(currentModel, maxDim * 0.8);
+            addLeaderLines(currentModel);
 
             setLoading(false);
             resolve();
